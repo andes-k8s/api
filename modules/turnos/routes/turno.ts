@@ -4,8 +4,6 @@ import * as express from 'express';
 import * as agenda from '../schemas/agenda';
 import { Logger } from '../../../utils/logService';
 import { paciente } from '../../../core/mpi/schemas/paciente';
-import * as pacienteController from '../../../core/mpi/controller/paciente';
-
 import { tipoPrestacion } from '../../../core/tm/schemas/tipoPrestacion';
 import { NotificationService } from '../../mobileApp/controller/NotificationService';
 import { LoggerPaciente } from '../../../utils/loggerPaciente';
@@ -37,6 +35,17 @@ router.get('/historial', async (req, res, next) => {
         const liberados = turnosController.getLiberadosPaciente(req);
         const turnos = await Promise.all([historial, liberados]);
         res.json([...turnos[0], ...turnos[1]]);
+    } catch (err) {
+        return next(err);
+    }
+
+});
+
+router.get('/search', async (req, res, next) => {
+    try {
+        const resultado = turnosController.getHistorialPaciente(req);
+        const turnos = await Promise.all([resultado]);
+        res.json(turnos);
     } catch (err) {
         return next(err);
     }
