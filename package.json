@@ -94,7 +94,8 @@
     "jobs": "tsc && node jobs/scheduler.js",
     "lint": "tslint --project .",
     "lint:fix": "tslint --project . --fix",
-    "parse": "apg -i core/term/controller/grammar/Expression-ABNF.txt -o core/term/controller/grammar/grammar.js"
+    "parse": "apg -i core/term/controller/grammar/Expression-ABNF.txt -o core/term/controller/grammar/grammar.js",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -107,10 +108,13 @@
   },
   "homepage": "https://github.com/andes/api#readme",
   "devDependencies": {
+    "@types/jest": "^24.0.23",
     "@types/request": "^2.48.1",
     "before": "0.0.1",
     "chai": "^4.1.2",
+    "jest": "^24.9.0",
     "nodemon": "^1.17.4",
+    "ts-jest": "^24.2.0",
     "tslint": "^5.11.0",
     "tslint-eslint-rules": "^5.3.1"
   }
