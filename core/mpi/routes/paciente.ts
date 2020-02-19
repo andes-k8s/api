@@ -297,12 +297,8 @@ router.get('/pacientes/:id', async (req, res, next) => {
         if (pacienteBuscado && pacienteBuscado.documento) {
             let pacienteConOS = pacienteBuscado.toObject({ virtuals: true });
             pacienteConOS.id = pacienteConOS._id;
-            try {
-                pacienteConOS.financiador = await getObraSocial(pacienteConOS);
-                res.json(pacienteConOS);
-            } catch (error) {
-                return res.json(pacienteBuscado);
-            }
+            pacienteConOS.financiador = await getObraSocial(pacienteConOS);
+            return res.json(pacienteConOS);
         } else {
             return res.json(pacienteBuscado);
         }
