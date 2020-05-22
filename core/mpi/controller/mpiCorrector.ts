@@ -2,8 +2,9 @@ import { userScheduler } from '../../../config.private';
 import { paciente } from '../schemas/paciente';
 import { matchSisa } from '../../../utils/servicioSisa';
 import { updatePaciente } from './paciente';
-import { log as andesLog } from '@andes/log';
+import { mpiLog } from '../mpi.log';
 import { logKeys } from '../../../config';
+const logMpi = mpiLog.startTrace();
 
 let logRequest = {
     ip: userScheduler.ip,
@@ -47,25 +48,25 @@ async function consultarSisa(persona: any) {
         if (resultado) {
             const match = resultado['matcheos'].matcheo; // Valor del matcheo de sisa
             const pacienteSisa: any = resultado['matcheos'].datosPaciente; // paciente con los datos de Sisa originales
+            const datosAnteriores = { nombre: persona.nombre.toString(), apellido: persona.apellido.toString() };
+            const nuevosDatos = { nombre: pacienteSisa.nombre, apellido: pacienteSisa.apellido };
             logRequest.body = { _id: persona.id };
             if (match >= 95) {
                 // Solo lo validamos con sisa si entra por aca
-                const datosAnteriores = { nombre: persona.nombre.toString(), apellido: persona.apellido.toString() };
-                const nuevosDatos = { nombre: pacienteSisa.nombre, apellido: pacienteSisa.apellido };
                 await actualizarPaciente(persona, pacienteSisa);
-                await andesLog(logRequest, logKeys.mpiCorrector.key, persona.id, logKeys.mpiCorrector.operacion, nuevosDatos, datosAnteriores);
+                await logMpi.info('update', nuevosDatos);
                 return true;
             } else {
                 const data = {
                     reportarError: 'false',
                 };
                 await updatePaciente(persona, data, logRequest);
-                await andesLog(logRequest, logKeys.mpiCorrector.key, persona._id, logKeys.mpiCorrector.operacion, null, null, 'matching: ' + match);
+                await logMpi.info('bajo matching' + match, datosAnteriores, logRequest);
             }
         }
         return false;
     } catch (err) {
-        await andesLog(logRequest, logKeys.mpiCorrector.key, persona._id, logKeys.mpiCorrector.operacion, null, null, 'Error actualizando paciente');
+        logMpi.error('mpi_corrector', persona, err, logRequest);
         return false;
     }
 }

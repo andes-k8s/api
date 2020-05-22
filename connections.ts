@@ -3,6 +3,7 @@ import * as configPrivate from './config.private';
 import * as debug from 'debug';
 import { Connections as loggerConnections } from '@andes/log';
 
+
 function schemaDefaults(schema) {
     schema.set('toJSON', {
         virtuals: true,
@@ -14,6 +15,7 @@ export class Connections {
     static main: mongoose.Connection;
     static snomed: mongoose.Connection;
     static puco: mongoose.Connection;
+    static logs: mongoose.Connection;
 
     /**
      * Inicializa las conexiones a MongoDB
@@ -43,7 +45,6 @@ export class Connections {
             configPrivate.hosts.elastic_main = 'http://localhost:9266';
         }
 
-
         // Conecta y configura conexiones
         // 1. PRINCIPAL
         mongoose.connect(configPrivate.hosts.mongoDB_main.host, configPrivate.hosts.mongoDB_main.options);
@@ -58,10 +59,14 @@ export class Connections {
         // 4. LOGGER
         loggerConnections.initialize(configPrivate.logDatabase.log.host, configPrivate.logDatabase.log.options);
 
+        // 5. LOGS
+        this.logs = mongoose.createConnection(configPrivate.logDatabase.log.host, configPrivate.logDatabase.log.options);
+
         // Configura eventos
         this.configEvents('main', this.main);
         this.configEvents('snomed', this.snomed);
         this.configEvents('puco', this.puco);
+        this.configEvents('logs', this.logs);
     }
 
     private static configEvents(name: string, connection: mongoose.Connection) {
