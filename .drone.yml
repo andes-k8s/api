@@ -8,14 +8,14 @@ steps:
     image: plugins/docker
     settings:
       debug: true
-      registry: ${REGISTRY}
-      repo: ${REGISTRY}:5000/${IMAGE_NAME}
-      #tags: ${DRONE_BRANCH}, ${DRONE_BRANCH}-${DRONE_COMMIT_SHA}
+      registry: ${DOCKER_REGISTRY}:5000
+      repo: ${DOCKER_REGISTRY}:5000/${IMAGE_NAME}
+      tags: ${DRONE_BRANCH}, ${DRONE_BRANCH}-${DRONE_COMMIT_SHA}
       insecure: true
     # commands:
     #   - docker build -t $IMAGE_NAME:$DRONE_COMMIT_BRANCH-$DRONE_COMMIT_SHA -t $IMAGE_NAME:$DRONE_COMMIT_BRANCH .
     #   - docker images
     environment:
       IMAGE_NAME: orlandobrea/api 
-      REGISTRY: docker-registry
+      DOCKER_REGISTRY: docker-registry
 
