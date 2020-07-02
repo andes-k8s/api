@@ -5,19 +5,15 @@ name: default
 
 steps:
   - name: build
-    image: plugins/docker
+    image: plugins/docker  
     settings:
       debug: true
-      registry: $DOCKER_REGISTRY
-      repo: $DOCKER_REGISTRY/$IMAGE_NAME
-      tags: 
-        - $DRONE_BRANCH
-        - $DRONE_BRANCH-$DRONE_COMMIT_SHA
+      registry: docker-registry:5000
+      repo: docker-registry:5000/orlandobrea/api
+      tags: ["${DRONE_BRANCH}", "${DRONE_BRANCH}-${DRONE_COMMIT_SHA}"]
       insecure: true
     # commands:
     #   - docker build -t $IMAGE_NAME:$DRONE_COMMIT_BRANCH-$DRONE_COMMIT_SHA -t $IMAGE_NAME:$DRONE_COMMIT_BRANCH .
     #   - docker images
-    environment:
-      IMAGE_NAME: orlandobrea/api 
-      DOCKER_REGISTRY: docker-registry:5000
+
 
