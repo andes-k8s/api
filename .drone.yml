@@ -10,9 +10,7 @@ steps:
       #debug: true
       registry: ${docker-registry}
       repo: ${docker-registry}:5000/${IMAGE_NAME}
-      tags: 
-        - "${DRONE_BRANCH}"
-        - "${DRONE_BRANCH}-${DRONE_COMMIT_SHA}"
+      tags: ${DRONE_BRANCH}, ${DRONE_BRANCH}-${DRONE_COMMIT_SHA}
       insecure: true
     # commands:
     #   - docker build -t $IMAGE_NAME:$DRONE_COMMIT_BRANCH-$DRONE_COMMIT_SHA -t $IMAGE_NAME:$DRONE_COMMIT_BRANCH .
