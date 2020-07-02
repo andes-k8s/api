@@ -8,8 +8,8 @@ steps:
     image: plugins/docker
     settings:
       debug: true
-      registry: docker-registry
-      repo: ${IMAGE_NAME}
+      registry: ${docker-registry}
+      repo: ${docker-registry}:5000/${IMAGE_NAME}
       tags: 
         - "${DRONE_BRANCH}"
         - "${DRONE_BRANCH}-${DRONE_COMMIT_SHA}"
@@ -19,4 +19,5 @@ steps:
     #   - docker images
     environment:
       IMAGE_NAME: orlandobrea/api 
+      REGISTRY: docker-registry
 
