@@ -7,7 +7,7 @@ steps:
   - name: build
     image: plugins/docker
     settings:
-      debug: true
+      #debug: true
       registry: ${docker-registry}
       repo: ${docker-registry}:5000/${IMAGE_NAME}
       tags: 
