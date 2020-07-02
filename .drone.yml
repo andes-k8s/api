@@ -8,8 +8,8 @@ steps:
     image: plugins/docker
     settings:
       #debug: true
-      registry: ${docker-registry}
-      repo: ${docker-registry}:5000/${IMAGE_NAME}
+      registry: ${REGISTRY}
+      repo: ${REGISTRY}:5000/${IMAGE_NAME}
       tags: ${DRONE_BRANCH}, ${DRONE_BRANCH}-${DRONE_COMMIT_SHA}
       insecure: true
     # commands:
