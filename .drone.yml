@@ -8,8 +8,8 @@ steps:
     image: plugins/docker  
     settings:
       debug: true
-      registry: docker-registry:5000
-      repo: docker-registry:5000/orlandobrea/api
+      registry: docker-registry.docker-registry:5000
+      repo: docker-registry.docker-registry:5000/orlandobrea/api
       tags: ["${DRONE_BRANCH}", "${DRONE_BRANCH}-${DRONE_COMMIT_SHA}"]
       insecure: true
     # commands:
