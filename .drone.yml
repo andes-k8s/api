@@ -12,12 +12,11 @@ steps:
         from_secret: REGISTRY_USER
       password:
         from_secret: REGISTRY_PASSWORD
-      registry: docker-registry.docker-registry:5000
-      repo: docker-registry.docker-registry:5000/orlandobrea/api
+      registry: harbor.192-168-0-8.nip.io:30002
+      repo: harbor.192-168-0-8.nip.io:30002/orlandobrea/api
       tags: ["${DRONE_BRANCH}", "${DRONE_BRANCH}-${DRONE_COMMIT_SHA}"]
       insecure: true
     # commands:
     #   - docker build -t $IMAGE_NAME:$DRONE_COMMIT_BRANCH-$DRONE_COMMIT_SHA -t $IMAGE_NAME:$DRONE_COMMIT_BRANCH .
     #   - docker images
-
 
