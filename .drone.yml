@@ -8,6 +8,10 @@ steps:
     image: plugins/docker  
     settings:
       debug: true
+      username: 
+        from_secret: REGISTRY_USER
+      password:
+        from_secret: REGISTRY_PASSWORD
       registry: docker-registry.docker-registry:5000
       repo: docker-registry.docker-registry:5000/orlandobrea/api
       tags: ["${DRONE_BRANCH}", "${DRONE_BRANCH}-${DRONE_COMMIT_SHA}"]
