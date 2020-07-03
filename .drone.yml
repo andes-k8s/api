@@ -11,7 +11,7 @@ steps:
       username: admin
       password: admin
       registry: docker-registry.192-168-0-8.nip.io:30443
-      repo: docker-registry.192-168-0-8.nip.io:30443/orlandobrea/api
+      repo: docker-registry.192-168-0-8.nip.io:30443/library/api
       tags: ["${DRONE_BRANCH}", "${DRONE_BRANCH}-${DRONE_COMMIT_SHA}"]
       insecure: true
     # commands:
