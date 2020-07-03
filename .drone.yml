@@ -13,7 +13,7 @@ steps:
       password:
         from_secret: REGISTRY_PASSWORD
       registry: http://harbor.192-168-0-8.nip.io:30002
-      repo: harbor.192-168-0-8.nip.io:30002/orlandobrea/api
+      repo: http://harbor.192-168-0-8.nip.io:30002/orlandobrea/api
       tags: ["${DRONE_BRANCH}", "${DRONE_BRANCH}-${DRONE_COMMIT_SHA}"]
       insecure: true
     # commands:
