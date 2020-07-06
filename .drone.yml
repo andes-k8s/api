@@ -12,8 +12,8 @@ steps:
         from_secret: REGISTRY_USER
       password:
         from_secret: REGISTRY_PASSWORD
-      registry: docker-registry.192-168-0-8.nip.io:30443
-      repo: docker-registry.192-168-0-8.nip.io:30443/andes/api
+      registry: new-docker-registry.192-168-0-8.nip.io:30443
+      repo: new-docker-registry.192-168-0-8.nip.io:30443/andes/api
       tags: ["${DRONE_BRANCH}", "${DRONE_BRANCH}-${DRONE_COMMIT_SHA}"]
       insecure: true
     # commands:
