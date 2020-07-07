@@ -12,7 +12,7 @@ WORKDIR /usr/src/api
 COPY package.json package-lock.json ./
 COPY packages ./packages
 
-RUN npm install
+RUN npm install --production
 
 COPY . .
 
