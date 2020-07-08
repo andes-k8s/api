@@ -4,6 +4,13 @@ type: kubernetes
 name: default
 
 steps:
+  - name: precheck
+    image: orlandobrea/andes-check-image-exist:latest
+    environment:
+      REGISTRY_URL: new-docker-registry.192-168-0-8.nip.io:30443
+      IMAGE: andes/api
+      TAG: ${DRONE_BRANCH}-${DRONE_COMMIT_SHA}
+
   - name: build
     image: plugins/docker  
     settings:
