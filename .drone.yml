@@ -11,7 +11,6 @@ steps:
       REGISTRY_URL: new-docker-registry.192-168-0-8.nip.io:30443
       IMAGE: andes/api
       TAG: ${DRONE_BRANCH}-${DRONE_COMMIT_SHA}
-
   - name: build
     image: plugins/docker  
     when:
@@ -27,7 +26,3 @@ steps:
       repo: new-docker-registry.192-168-0-8.nip.io:30443/andes/api
       tags: ["${DRONE_BRANCH}", "${DRONE_BRANCH}-${DRONE_COMMIT_SHA}"]
       insecure: true
-    # commands:
-    #   - docker build -t $IMAGE_NAME:$DRONE_COMMIT_BRANCH-$DRONE_COMMIT_SHA -t $IMAGE_NAME:$DRONE_COMMIT_BRANCH .
-    #   - docker images
-
