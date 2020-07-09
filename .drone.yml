@@ -13,6 +13,9 @@ steps:
 
   - name: build
     image: plugins/docker  
+    when:
+      status:
+        - failure    
     settings:
       debug: true
       username: 
