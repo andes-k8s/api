@@ -22,7 +22,8 @@ steps:
         from_secret: REGISTRY_USER
       password:
         from_secret: REGISTRY_PASSWORD
-      registry: ${DOCKER_REGISTRY_PROTOCOL}://${DOCKER_REGISTRY_URL}
+      registry: ${DOCKER_REGISTRY_URL}
+      mirror: ${DOCKER_REGISTRY_PROTOCOL}://${DOCKER_REGISTRY_URL}
       repo: ${DOCKER_REGISTRY_URL}/andes/api
       tags: ["${DRONE_BRANCH}", "${DRONE_BRANCH}-${DRONE_COMMIT_SHA}"]
       insecure: true
