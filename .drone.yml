@@ -27,6 +27,7 @@ steps:
       tags: ["${DRONE_BRANCH}", "${DRONE_BRANCH}-${DRONE_COMMIT_SHA}"]
       insecure: true
 
+      
 # Params example:
 # DRONE_BRANCH: master
 # DOCKER_REGISTRY_URL: registry.192-168-68-2.nip.io:30443
